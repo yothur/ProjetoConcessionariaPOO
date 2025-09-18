@@ -4,5 +4,6 @@ public class Main {
         System.out.println("Teste");
         System.out.println("Final");
         System.out.println("final2");
+        System.out.println("Deu certo");
     }
 }
