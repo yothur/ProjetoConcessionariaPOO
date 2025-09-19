@@ -6,7 +6,6 @@ public class Veiculo {
     public boolean disponivel;
     public double preco;
 
-
     public Veiculo (String marca, String modelo, String placa, int ano, boolean disponivel, double preco){
         this.disponivel = true;
         this.marca = marca;
@@ -17,7 +16,7 @@ public class Veiculo {
     }
 
     public void mudarDisponibilidade(Boolean disponivel){
-        this.disponivel= false;
+        this.disponivel= disponivel;
     }
 
 
