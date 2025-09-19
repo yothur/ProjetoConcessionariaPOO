@@ -17,7 +17,7 @@ public class Veiculo {
     }
 
     public void mudarDisponibilidade(Boolean disponivel){
-        this.disponivel= false;
+        this.disponivel = disponivel;
     }
 
 
