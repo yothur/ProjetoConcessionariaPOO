@@ -18,5 +18,29 @@ public class Concessionaria {
         this.vendas = new ArrayList<>();
     }
 
+    public boolean adicionarVeiculos (Veiculo veiculo) {
+        for (int i = 0; i < this.totalVeiculos; i++) {
+            if (this.veiculos.get(i).placa.equals(veiculo.placa)) {
+                return false;
+            }
+        }
+        boolean veiculoInserido = this.veiculos.add(veiculo);
+        if (veiculoInserido){
+            this.totalVeiculos++;
+        }
+        return veiculoInserido;
+    }
+
+    public boolean removerVeiculo(String placa) {
+        for (int i = 0; i < this.totalVeiculos; i++) {
+            if (this.veiculos.get(i).placa.equals(placa)) {
+                Veiculo veiculoEncontrado = this.veiculos.get(i);
+                this.veiculos.remove(veiculoEncontrado);
+                this.totalVeiculos--;
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
