@@ -43,4 +43,27 @@ public class Concessionaria {
         return false;
     }
 
+    public ArrayList<Veiculo> buscarVeiculoPorMarca (String marca) {
+        ArrayList<Veiculo> veiculosProcuradosMarca = new ArrayList<>();
+        for (int i = 0; i < this.totalVeiculos; i++){
+            if (this.veiculos.get(i).marca.toLowerCase().contains(marca.toLowerCase())){
+                Veiculo veiculo = this.veiculos.get(i);
+                veiculosProcuradosMarca.add(veiculo);
+
+            }
+        }
+        return veiculosProcuradosMarca;
+    }
+
+    public ArrayList<Veiculo> buscarVeiculoPorModelo (String modelo) {
+        ArrayList<Veiculo> veiculosProcuradosModelo = new ArrayList<>();
+        for (int i = 0; i < this.totalVeiculos; i++){
+            if (this.veiculos.get(i).modelo.toLowerCase().contains(modelo.toLowerCase())){
+                Veiculo veiculo = this.veiculos.get(i);
+                veiculosProcuradosModelo.add(veiculo);
+            }
+        }
+        return veiculosProcuradosModelo;
+    }
+
 }
