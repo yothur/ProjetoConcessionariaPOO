@@ -104,8 +104,8 @@ public class Concessionaria {
                         if (vendaConcluida){
                             this.totalVendas++;
                             this.totalVeiculos--;
-                            veiculo.mudarDisponibilidade(false);
-                            return vendaConcluida;
+                            this.veiculos.remove(veiculo);
+                            return true;
                         }
                     }
                 }
