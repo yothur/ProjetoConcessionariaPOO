@@ -16,9 +16,6 @@ public class Concessionaria {
         this.veiculos = new ArrayList<>();
         this.clientes = new ArrayList<>();
         this.vendas = new ArrayList<>();
-        this.totalVeiculos= 0;
-        this.totalClientes= 0;
-        this.totalVendas = 0;
     }
 
     public boolean adicionarVeiculos (Veiculo veiculo) {
