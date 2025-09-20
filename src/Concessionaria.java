@@ -16,6 +16,9 @@ public class Concessionaria {
         this.veiculos = new ArrayList<>();
         this.clientes = new ArrayList<>();
         this.vendas = new ArrayList<>();
+        this.totalVeiculos= 0;
+        this.totalClientes= 0;
+        this.totalVendas = 0;
     }
 
     public boolean adicionarVeiculos (Veiculo veiculo) {
@@ -87,6 +90,28 @@ public class Concessionaria {
                 this.clientes.remove(clienteEncontrado);
                 this.totalClientes--;
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean realizarVenda(String placa, int idCliente, String dataVenda, String formaPagamento, double valor){
+        for (int i=0; i < this.totalClientes; i++){
+            if (this.clientes.get(i).id == idCliente){
+                for (int v= 0; v < this.totalVeiculos; v++){
+                    if (this.veiculos.get(v).placa.equals(placa)){
+                        Veiculo veiculo= this.veiculos.get(v);
+                        Cliente clienteEncontrado = this.clientes.get(i);
+                        Venda venda = new Venda(veiculo, clienteEncontrado, dataVenda,valor,formaPagamento); //objeto da classe venda.
+                        boolean vendaConcluida= this.vendas.add(venda);
+                        if (vendaConcluida){
+                            this.totalVendas++;
+                            this.totalVeiculos--;
+                            return vendaConcluida;
+                        }
+                    }
+                }
+
             }
         }
         return false;
