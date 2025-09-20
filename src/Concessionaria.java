@@ -1,6 +1,5 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Concessionaria {
 
@@ -48,8 +47,8 @@ public class Concessionaria {
         ArrayList<Veiculo> veiculosProcuradosMarca = new ArrayList<>();
         for (int i = 0; i < this.totalVeiculos; i++){
             if (this.veiculos.get(i).marca.toLowerCase().contains(marca.toLowerCase())){
-                Veiculo veiculo = this.veiculos.get(i);
-                veiculosProcuradosMarca.add(veiculo);
+                Veiculo adicionarVeiculoMarca = this.veiculos.get(i);
+                veiculosProcuradosMarca.add(adicionarVeiculoMarca);
 
             }
         }
@@ -60,11 +59,36 @@ public class Concessionaria {
         ArrayList<Veiculo> veiculosProcuradosModelo = new ArrayList<>();
         for (int i = 0; i < this.totalVeiculos; i++){
             if (this.veiculos.get(i).modelo.toLowerCase().contains(modelo.toLowerCase())){
-                Veiculo veiculo = this.veiculos.get(i);
-                veiculosProcuradosModelo.add(veiculo);
+                Veiculo adicionarVeiculoModelo = this.veiculos.get(i);
+                veiculosProcuradosModelo.add(adicionarVeiculoModelo);
             }
         }
         return veiculosProcuradosModelo;
     }
 
+    public boolean cadastrarCliente (Cliente cliente) {
+        for (int i =0; i < this.totalClientes; i++) {
+            if (this.clientes.get(i).id == cliente.id && this.clientes.get(i).telefone.equals(cliente.telefone)
+                    && this.clientes.get(i).email.equals(cliente.email)) {
+                return false;
+            }
+        }
+        boolean adicionarCliente = this.clientes.add(cliente);
+        if (adicionarCliente) {
+            totalClientes++;
+        }
+        return adicionarCliente;
+    }
+
+    public boolean removerCliente (int id) {
+        for (int i = 0; i < this.totalClientes; i++) {
+            if (this.clientes.get(i).id == id) {
+                Cliente clienteEncontrado = this.clientes.get(i);
+                this.clientes.remove(clienteEncontrado);
+                this.totalClientes--;
+                return true;
+            }
+        }
+        return false;
+    }
 }
