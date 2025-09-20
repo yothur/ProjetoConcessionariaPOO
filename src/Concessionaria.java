@@ -126,12 +126,11 @@ public class Concessionaria {
         return veiculoDisponivel;
     }
 
-    /*public ArrayList<Venda> listarVendasRealizadas(){
+    public ArrayList<Venda> listarVendasRealizadas(){
         ArrayList<Venda> vendaRealizada = new ArrayList<>();
         for (int i = 0; i < this.totalVendas; i++){
-
         }
-    }*/
+    }
 
     @Override
     public String toString() {
