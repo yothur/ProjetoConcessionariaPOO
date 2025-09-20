@@ -99,11 +99,12 @@ public class Concessionaria {
                     if (this.veiculos.get(v).placa.equals(placa)){
                         Veiculo veiculo= this.veiculos.get(v);
                         Cliente clienteEncontrado = this.clientes.get(i);
-                        Venda venda = new Venda(veiculo, clienteEncontrado, dataVenda,valor,formaPagamento); //objeto da classe venda.
+                        Venda venda = new Venda(veiculo, clienteEncontrado, dataVenda,valor,formaPagamento);
                         boolean vendaConcluida= this.vendas.add(venda);
                         if (vendaConcluida){
                             this.totalVendas++;
                             this.totalVeiculos--;
+                            veiculo.mudarDisponibilidade(false);
                             return vendaConcluida;
                         }
                     }
@@ -112,5 +113,30 @@ public class Concessionaria {
             }
         }
         return false;
+    }
+
+    public ArrayList<Veiculo> listarVeiculosDisponiveis(){
+        ArrayList<Veiculo> veiculoDisponivel = new ArrayList<>();
+        for (int i = 0; i< this.totalVeiculos; i++){
+            if (this.veiculos.get(i).disponivel){
+                Veiculo disponibilidadeVeiculo = this.veiculos.get(i);
+                veiculoDisponivel.add(disponibilidadeVeiculo);
+            }
+        }
+        return veiculoDisponivel;
+    }
+
+    /*public ArrayList<Venda> listarVendasRealizadas(){
+        ArrayList<Venda> vendaRealizada = new ArrayList<>();
+        for (int i = 0; i < this.totalVendas; i++){
+
+        }
+    }*/
+
+    @Override
+    public String toString() {
+        return String.format("<Concessionaria: Nome=%s, Veiculo=%s, Clientes=%s, " +
+                "Vendas=%s, Total de Veiculos=%d, Total de Clientes=%d, Total de Vendas =%d>"
+                , this.nome, this.veiculos, this.clientes, this.vendas, totalVeiculos, totalClientes, totalVendas);
     }
 }
