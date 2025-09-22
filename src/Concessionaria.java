@@ -68,8 +68,8 @@ public class Concessionaria {
 
     public boolean cadastrarCliente (Cliente cliente) {
         for (int i =0; i < this.totalClientes; i++) {
-            if (this.clientes.get(i).id == cliente.id && this.clientes.get(i).telefone.equals(cliente.telefone)
-                    && this.clientes.get(i).email.equals(cliente.email)) {
+            if (this.clientes.get(i).id == cliente.id || this.clientes.get(i).telefone.equals(cliente.telefone)
+                    || this.clientes.get(i).email.equals(cliente.email)) {
                 return false;
             }
         }
@@ -103,8 +103,7 @@ public class Concessionaria {
                         boolean vendaConcluida= this.vendas.add(venda);
                         if (vendaConcluida){
                             this.totalVendas++;
-                            this.totalVeiculos--;
-                            this.veiculos.remove(veiculo);
+                           veiculo.mudarDisponibilidade(false);
                             return true;
                         }
                     }

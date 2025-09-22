@@ -7,7 +7,7 @@ public class Veiculo {
     public double preco;
 
 
-    public Veiculo (String marca, String modelo, String placa, int ano, boolean disponivel, double preco){
+    public Veiculo (String marca, String modelo, String placa, int ano, double preco){
         this.disponivel = true;
         this.marca = marca;
         this.modelo = modelo;
