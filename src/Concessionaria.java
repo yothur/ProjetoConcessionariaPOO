@@ -68,8 +68,8 @@ public class Concessionaria {
 
     public boolean cadastrarCliente (Cliente cliente) {
         for (int i =0; i < this.totalClientes; i++) {
-            if (this.clientes.get(i).id == cliente.id && this.clientes.get(i).telefone.equals(cliente.telefone)
-                    && this.clientes.get(i).email.equals(cliente.email)) {
+            if (this.clientes.get(i).id == cliente.id || this.clientes.get(i).telefone.equals(cliente.telefone)
+                    || this.clientes.get(i).email.equals(cliente.email)) {
                 return false;
             }
         }
@@ -96,16 +96,15 @@ public class Concessionaria {
         for (int i=0; i < this.totalClientes; i++){
             if (this.clientes.get(i).id == idCliente){
                 for (int v= 0; v < this.totalVeiculos; v++){
-                    if (this.veiculos.get(v).placa.equals(placa)){
+                    if (this.veiculos.get(v).placa.equals(placa) && this.veiculos.get(v).disponivel){
                         Veiculo veiculo= this.veiculos.get(v);
                         Cliente clienteEncontrado = this.clientes.get(i);
                         Venda venda = new Venda(veiculo, clienteEncontrado, dataVenda,valor,formaPagamento);
                         boolean vendaConcluida= this.vendas.add(venda);
                         if (vendaConcluida){
                             this.totalVendas++;
-                            this.totalVeiculos--;
-                            veiculo.mudarDisponibilidade(false);
-                            return vendaConcluida;
+                           veiculo.mudarDisponibilidade(false);
+                            return true;
                         }
                     }
                 }
@@ -133,7 +132,7 @@ public class Concessionaria {
     @Override
     public String toString() {
         return String.format("<Concessionaria: Nome=%s, Veiculo=%s, Clientes=%s, " +
-                "Vendas=%s, Total de Veiculos=%d, Total de Clientes=%d, Total de Vendas =%d>"
+                        "Vendas=%s, Total de Veiculos=%d, Total de Clientes=%d, Total de Vendas =%d>"
                 , this.nome, this.veiculos, this.clientes, this.vendas, totalVeiculos, totalClientes, totalVendas);
     }
 }
